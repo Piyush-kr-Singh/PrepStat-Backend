@@ -35,4 +35,33 @@ router.get("/reasoning", (req, res) => {
 
 
 
+
+router.get("/verbal", (req, res) => {
+  conn.query("SELECT * FROM verbal  ", (err, result) => {
+    if (err) {
+      console.log("err", err);
+      res.status(500).json("Internal server error");
+    } else if (result.length === 0) {
+      res.status(404).json("No data found");
+    } else {
+      res.status(200).json(result);
+    }
+  });
+});
+
+
+router.get("/interview", (req, res) => {
+  conn.query("SELECT * FROM interview where category = 'core_java' ", (err, result) => {
+    if (err) {
+      console.log("err", err);
+      res.status(500).json("Internal server error");
+    } else if (result.length === 0) {
+      res.status(404).json("No data found");
+    } else {
+      res.status(200).json(result);
+    }
+  });
+});
+
+
 module.exports = router;

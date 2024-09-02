@@ -6,7 +6,7 @@ const conn = require("../db/conn");
 
 //Get all the mcq's related Aptitute
 router.get("/aptitute", (req, res) => {
-  conn.query("SELECT * FROM aptitute where category = 'probability' ", (err, result) => {
+  conn.query("SELECT * FROM aptitute", (err, result) => {
     if (err) {
       console.log("err", err);
       res.status(500).json("Internal server error");
@@ -21,7 +21,7 @@ router.get("/aptitute", (req, res) => {
 
 //Get all the mcq's related Reasoning
 router.get("/reasoning", (req, res) => {
-  conn.query("SELECT * FROM reasoning where category = 'essential_part' ", (err, result) => {
+  conn.query("SELECT * FROM reasoning", (err, result) => {
     if (err) {
       console.log("err", err);
       res.status(500).json("Internal server error");
@@ -51,7 +51,7 @@ router.get("/verbal", (req, res) => {
 
 
 router.get("/interview", (req, res) => {
-  conn.query("SELECT * FROM interview where category = 'core_java' ", (err, result) => {
+  conn.query("SELECT * FROM interview  ", (err, result) => {
     if (err) {
       console.log("err", err);
       res.status(500).json("Internal server error");

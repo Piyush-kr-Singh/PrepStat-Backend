@@ -64,4 +64,18 @@ router.get("/interview", (req, res) => {
 });
 
 
+router.get("/stats", (req, res) => {
+  conn.query("SELECT * FROM stats  ", (err, result) => {
+    if (err) {
+      console.log("err", err);
+      res.status(500).json("Internal server error");
+    } else if (result.length === 0) {
+      res.status(404).json("No data found");
+    } else {
+      res.status(200).json(result);
+    }
+  });
+});
+
+
 module.exports = router;

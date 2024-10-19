@@ -4,7 +4,7 @@ const conn = require("../db/conn");
 
 
 
-//Get all the mcq's related Aptitute
+//Get all category related Aptitute
 router.get("/aptitude", (req, res) => {
   conn.query("SELECT DISTINCT category FROM aptitute", (err, result) => {
     if (err) {
@@ -51,6 +51,20 @@ router.get("/reasoning", (req, res) => {
   });
 });
 
+router.get("/reasoning/:topic", (req, res) => {
+  const topic = req.params.topic;
+
+  conn.query("SELECT * FROM reasoning WHERE category = ?", [topic], (err, result) => {
+    if (err) {
+      console.log("err", err);
+      res.status(500).json("Internal server error");
+    } else if (result.length === 0) {
+      res.status(404).json("No data found for the selected topic");
+    } else {
+      res.status(200).json(result);
+    }
+  });
+});
 
 
 
@@ -68,6 +82,21 @@ router.get("/verbal", (req, res) => {
   });
 });
 
+router.get("/verbal/:topic", (req, res) => {
+  const topic = req.params.topic;
+
+  conn.query("SELECT * FROM verbal WHERE category = ?", [topic], (err, result) => {
+    if (err) {
+      console.log("err", err);
+      res.status(500).json("Internal server error");
+    } else if (result.length === 0) {
+      res.status(404).json("No data found for the selected topic");
+    } else {
+      res.status(200).json(result);
+    }
+  });
+});
+
 
 router.get("/interview", (req, res) => {
   conn.query("SELECT DISTINCT category FROM interview", (err, result) => {
@@ -79,6 +108,21 @@ router.get("/interview", (req, res) => {
     } else {
       const categories = result.map(row => row.category);
       res.status(200).json(categories);
+    }
+  });
+});
+
+router.get("/interview/:topic", (req, res) => {
+  const topic = req.params.topic;
+
+  conn.query("SELECT * FROM interview WHERE category = ?", [topic], (err, result) => {
+    if (err) {
+      console.log("err", err);
+      res.status(500).json("Internal server error");
+    } else if (result.length === 0) {
+      res.status(404).json("No data found for the selected topic");
+    } else {
+      res.status(200).json(result);
     }
   });
 });

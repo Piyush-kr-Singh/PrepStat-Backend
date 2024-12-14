@@ -6,7 +6,7 @@ const conn = require("../db/conn");
 
 //Get all category related Aptitute
 router.get("/aptitude", (req, res) => {
-  conn.query("SELECT DISTINCT category FROM aptitute", (err, result) => {
+  conn.query("SELECT DISTINCT category FROM aptitute ORDER BY category ASC", (err, result) => {
     if (err) {
       console.log("err", err);
       res.status(500).json("Internal server error");

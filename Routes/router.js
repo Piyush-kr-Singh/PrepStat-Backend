@@ -38,7 +38,7 @@ router.get("/aptitude/:topic", (req, res) => {
 
 //Get all the mcq's related Reasoning
 router.get("/reasoning", (req, res) => {
-  conn.query("SELECT DISTINCT category FROM reasoning", (err, result) => {
+  conn.query("SELECT DISTINCT category FROM reasoning ORDER BY category ASC", (err, result) => {
     if (err) {
       console.log("err", err);
       res.status(500).json("Internal server error");
@@ -69,7 +69,7 @@ router.get("/reasoning/:topic", (req, res) => {
 
 
 router.get("/verbal", (req, res) => {
-  conn.query("SELECT DISTINCT category FROM verbal", (err, result) => {
+  conn.query("SELECT DISTINCT category FROM verbal ORDER BY category ASC", (err, result) => {
     if (err) {
       console.log("err", err);
       res.status(500).json("Internal server error");
@@ -99,7 +99,7 @@ router.get("/verbal/:topic", (req, res) => {
 
 
 router.get("/interview", (req, res) => {
-  conn.query("SELECT DISTINCT category FROM interview", (err, result) => {
+  conn.query("SELECT DISTINCT category FROM interview ORDER BY category ASC", (err, result) => {
     if (err) {
       console.log("err", err);
       res.status(500).json("Internal server error");
